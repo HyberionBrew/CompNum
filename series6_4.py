@@ -20,21 +20,20 @@ print("The error is minimal at:",ind_error , error[ind_error])
 n = 3
 
 x = np.zeros(20)
+
 q_prev = 0
 for n in range(1,20):
-    q = (u[n+2]-u[n]) /(u[n+1]-u[n])
-    C = (u[n+2]-u[n])/q**2
-    xu = u[n]
-    x[n] = xu + C* q**n
-    if q**n < q_prev:
+    q = (u[n+1]-u[n+2]) /(u[n]-u[n+1])
+    C = (u[n]-u[n+1])/(q**(n)-q**(n+1))
+    x[n] = u[n] - C* q**n
+    if q > 1 or q<0:
         break
     q_prev = q**n
 
-    
 error = abs(np.pi -x)
 ind_error = np.argmin(error)
 print(error)
 print("The error is minimal at:", ind_error , error[ind_error])
 
 
-#6.5b) yes once q**n changes from becoming bigger and it encounters an overflow
+#6.5b) yes once q**n changes from becoming bigger and it encounters an overflow (check if q is outside of (0,1))
