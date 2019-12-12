@@ -41,6 +41,7 @@ for i in range(0,iterations):
     x = x - delta
     error[i] = np.linalg.norm(x - x_e)
     #print(x)
+print(x)
 print(error)
 
 x_axis = np.linspace(0,iterations-1,iterations)+1

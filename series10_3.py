@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 epsilon = 0.01
-iterations = 10
+iterations = 20
 
 def comp_f(X,eps):
     f = np.zeros((2,1))
@@ -18,8 +18,8 @@ def comp_f(X,eps):
 
 def comp_f_dx(X,eps):
     f = np.zeros((2,2))
-    f[0][0] = 2 - eps * (X[0]-X[1])* 2 * -X[1]
-    f[0][1] = 1 - eps * (X[0]-X[1])* 2 * X[0]
+    f[0][0] = 2 - eps * (X[0]-X[1])* 2
+    f[0][1] = 1 - eps * (X[0]-X[1])* 2
     f[1][0] = 1
     f[1][1] = 2
     return f
@@ -63,6 +63,8 @@ x = x_0
 for i in range(0, iterations):
     x_e = x
     b_n = b + epsilon * f_exc(x)
+    #Ax = b
+    #f_dx * x = f
     x = np.linalg.inv(A) @ b_n
     error[1][i] = np.linalg.norm(x - x_solution)
     error_iter[1][i] = np.linalg.norm(x -x_e)
@@ -76,5 +78,6 @@ plt.loglog(x_axis, error[0],"ro",label ='true error estimate newton')
 plt.loglog(x_axis, error[1],"bo",label ='true error estimate method in b')
 plt.loglog(x_axis, error_iter[0],"g",label ='error estimate newton')
 plt.loglog(x_axis, error_iter[1],"y",label ='error estimate method in b')
-plt.loglog(x_axis, np.e**(-x_axis*2),"b",label ='O(n**2)')
+#plt.loglog(x_axis, np.e**(-x_axis*2),"b",label ='O(n**2)')
+plt.loglog(x_axis, np.e**(-x_axis*3),"b",label ='O(n**3)')
 plt.legend()
