@@ -50,7 +50,6 @@ for i in range(0,iterations):
     u = np.linalg.solve(f_dx,f)
     error[i] = np.linalg.norm(u - u_e)
 print(error)
-print(u)
 #print(u)
 x_axis = np.linspace(0,iterations-1,iterations)+1
 plt.semilogy(x_axis, error,"ro",label ='error estimate')
