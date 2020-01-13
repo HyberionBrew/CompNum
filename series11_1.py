@@ -6,13 +6,14 @@ Created on Sat Jan  4 11:24:05 2020
 """
 
 #Continuation Method
+#fehlerhaft
 import numpy as np
 x = 4
 def H(x,s):
     return np.arctan(x)-(1-s)*np.arctan(4)
 
 def H_dx(x):
-    return 1/(x**2+1) 
+    return 1/(1+x**2) 
 
 i = np.array([i for i in range(1,11)])
 
